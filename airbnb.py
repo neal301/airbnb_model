@@ -54,15 +54,13 @@ listings['property_type'] = clean_property_type(listings['property_type'])
 
 #%%
 
-listings.hist(bins=50, figsize=(15,10))
+test.hist(bins=50)
 
 
 
 #%%
 
-corr = listings.corr(numeric_only=True)
-
-corr['price'].sort_values(ascending=False)
+listings[listings['review_scores_value'] == 1]
 
 #%%
 
