@@ -10,16 +10,19 @@ import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-listings = pd.read_csv(r"listings.csv")
-listings.columns
+df = pd.read_csv(r"listings.csv")
+df.columns
 
-listings = listings[['host_is_superhost', 'host_listings_count', 'host_total_listings_count', 'latitude', 'longitude', 'property_type', 
-          'accommodates', 'beds', 'price', 'minimum_nights', 'maximum_nights', 'number_of_reviews', 'review_scores_rating', 'review_scores_cleanliness', 
+#%%
+from sklearn.model_selection import train_test_split
+
+train_set, test_set = train_test_split(df, test_size=0.2, random_state=42)
+
+listings = train_set[['price', 'host_is_superhost', 'host_listings_count', 'host_total_listings_count', 'latitude', 'longitude', 'property_type', 
+          'accommodates', 'beds', 'minimum_nights', 'maximum_nights', 'number_of_reviews', 'review_scores_rating', 'review_scores_cleanliness', 
           'review_scores_communication', 'review_scores_value']]
 
 #%%
-
-listings = listings.dropna(subset='price')
 
 def clean_price(price_column):
     #cleans and converts price to strings  
